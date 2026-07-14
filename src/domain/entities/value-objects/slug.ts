@@ -1,19 +1,11 @@
-export class Slug
-{
-    public value: string
-        constructor( value: string){
-        this.value = value;
-        }
+export class Slug {
+    public readonly value: string;
 
-    /**
-     * Receives a string and nomalize it as a slug
-     *
-     * Exemple "An example title " => "an-example-title":
-     *
-     *
-     * @param text
-     */
-    static createFromText (text: string){
+    constructor(value: string) {
+        this.value = value;
+    }
+
+    static createFromText(text: string) {
         const slugText = text
             .normalize("NFKD")
             .toLowerCase()
@@ -21,11 +13,10 @@ export class Slug
             .replace(/\s+/g, '-')
             .replace(/[^a-z0-9-]/g, '-')
             .replace(/--+/g, '-')
-            .replace(/-$/g, '')
+            .replace(/-$/g, '');
 
-        return new Slug(slugText)
-        }
-
+        return new Slug(slugText);
+    }
 }
 
 
