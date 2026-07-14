@@ -1,12 +1,9 @@
-import { Entity } from "../../core/entities/entity.js";
-import { UniqueEntityID } from "../../core/entities/unique-entity-id.js";
-
-
+import { Entity } from "@/core/entities/entity.js";
+import type { UniqueEntityID } from "@/core/entities/unique-entity-id.js";
 
 interface InstructorProps {
     name: string;
 }
-
 
 export class Instructor extends Entity<InstructorProps> {
 
@@ -14,10 +11,9 @@ export class Instructor extends Entity<InstructorProps> {
         props: InstructorProps,
         id?: UniqueEntityID
     ) {
-        const instructor = new Instructor(props, id)
+        const instructor = new Instructor(props, id);
 
-        return Instructor;
+        return instructor;
     }
-
 }
 

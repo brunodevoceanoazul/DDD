@@ -1,16 +1,12 @@
-
 import { expect, test } from "vitest";
-import { AnswerRepository } from "../repositories/answer-repository.js";
+import type { AnswerRepository } from "@/domain/repositories/answer-repository.js";
 import { AnswerQuestionUseCase } from "./answer-question.js";
-import { Answer } from "../entities/answer.js";
-
 
 const fakeAnswerRepository: AnswerRepository = {
-    create: async (answer: Answer) => {
+    create: async () => {
         return;
     },
 }
-
 
 test('should be able to create an answer', async () => {
     const answerQuestion = new AnswerQuestionUseCase(fakeAnswerRepository)
@@ -22,5 +18,4 @@ test('should be able to create an answer', async () => {
     })
 
     expect(answer.content).toEqual('Nova resposta')
-
 })
