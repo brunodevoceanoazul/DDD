@@ -1,69 +1,26 @@
-# DDD no Node.js — Fórum Educacional
+# DDD · Inventory domain in TypeScript
 
-Repositório do código das aulas de DDD da formação **Node.js** da **Rocketseat**.
+Personal practice from Rocketseat’s Node.js training. This repository includes an initial forum exercise and a later inventory domain. The inventory work is the best starting point for a technical review.
 
-Este repositório contém a implementação prática dos conceitos de **Domain-Driven Design (DDD)** e **Clean Architecture** na construção de uma API REST para um fórum educacional.
+**Stack** · TypeScript, Node.js, Vitest.
 
-## 📚 O que é DDD?
+| Start here | What it demonstrates |
+| --- | --- |
+| [Stock entity](src/domain/entities/stock.ts) and [unit tests](src/domain/entities/stock.spec.ts) | Business rules and state changes. |
+| [Register product](src/domain/use-cases/register-product.ts) and [tests](src/domain/use-cases/register-product.spec.ts) | A use case separated from persistence by a repository contract. |
+| [Slug value object](src/domain/entities/value-objects/slug.ts) and [tests](src/domain/entities/value-objects/slug.spec.ts) | Normalization and domain modeling. |
 
-Domain-Driven Design (DDD) é uma abordagem de desenvolvimento de software que coloca o **domínio do problema** (a regra de negócio) como centro do design da aplicação. Criado por Eric Evans, o DDD fornece um conjunto de padrões e práticas para modelar domínios complexos de forma que o código reflita a linguagem do negócio.
+**Original contribution** · [Inventory entities and use cases](https://github.com/BrunoBDevOceanoAzul/DDD/commit/dfe36d23d9421cd15f5d0ae43f25865337f9f44c). See the upstream commit for authorship and the implementation diff.
 
-## 🧱 Estrutura do Projeto
+## Run the tests
 
-```
-src/
-└── domain/
-    ├── entities/           # Entidades do domínio
-    │   ├── answer.ts       # Resposta de uma pergunta
-    │   ├── question.ts     # Pergunta do fórum
-    │   ├── student.ts      # Aluno
-    │   └── instructor.ts   # Instrutor
-    ├── use-cases/          # Casos de uso da aplicação
-    │   ├── answer-question.ts
-    │   └── answer-question.spec.ts
-    └── repositories/       # Contratos de repositórios
-        └── answer-repository.ts
-```
+Use Node.js 22 and npm.
 
-## 🔧 Conceitos de DDD Aplicados
-
-### Entidades
-
-As **entidades** são objetos que possuem uma identidade única e um ciclo de vida. No projeto:
-
-| Entidade   | Atributos                          | Identidade     |
-|------------|------------------------------------|----------------|
-| `Answer`   | `id`, `content`, `authorId`, `questionId` | UUID |
-| `Question` | `id`, `title`, `content`, `authorId`      | UUID |
-| `Student`  | `id`, `name`                       | UUID |
-| `Instructor` | `id`, `name`                     | UUID |
-
-### Value Objects (VO)
-
-Serão implementados como objetos imutáveis que representam conceitos do domínio sem identidade própria (ex: `Slug`, `Email`).
-
-### Agregados
-
-Conjuntos de entidades que são tratadas como uma unidade. A `Question` pode ser um aggregate root que contém `Answer` como parte do seu aggregate.
-
-### Repositórios
-
-Interfaces que definem contratos de persistência, desacoplando o domínio da infraestrutura. As implementações concretas serão injetadas nos use cases.
-
-### Casos de Uso
-
-Orquestram as operações do domínio. Exemplo: `AnswerQuestionUseCase` recebe os dados, cria a entidade `Answer` e persiste via repositório.
-
-## 🧪 Testes
-
-```bash
+```sh
+npm ci
 npm test
 ```
 
-O projeto utiliza **Vitest** para testes unitários.
+## Em português
 
-## 🚀 Tecnologias
-
-- **Node.js** — Runtime
-- **TypeScript** — Tipagem estática
-- **Vitest** — Testes unitários
+Exercício pessoal da formação Node.js da Rocketseat. Comece pela entidade de estoque e pelos casos de uso para avaliar regras de domínio, interfaces de repositório e testes unitários.
